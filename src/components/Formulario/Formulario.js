@@ -4,7 +4,7 @@ import CampoTexto from '../CampoTexto';
 import ListaSuspensa from '../ListaSuspensa';
 import './Formulario.css';
 
-export const Formulario = () => {
+export const Formulario = (props) => {
     const times = [
         "Programação",
         "Front-End",
@@ -22,7 +22,7 @@ export const Formulario = () => {
 
     const aoSalvar = (evento) => {
         evento.preventDefault();
-        console.log("Form Submetido => ", nome, cargo, imagem, time);
+        props.aoCadastrar({ nome, cargo, imagem, time });
     }
 
     return (
