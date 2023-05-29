@@ -13,6 +13,10 @@ export const Formulario = (props) => {
     const aoSalvar = (evento) => {
         evento.preventDefault();
         props.aoCadastrar({ nome, cargo, imagem, time });
+        setNome('');
+        setCargo('');
+        setImagem('');
+        setTime('');
     }
 
     return (
