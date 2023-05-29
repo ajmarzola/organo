@@ -8,7 +8,9 @@ export const Time = (props) => {
     return (
         <section className='time' style={styleSection}>
             <h3 style={styleH3}>{props.nome}</h3>
-            <Colaborador />
+            <div className='colaboradores'>
+                {props.colaboradores.map(colaborador => <Colaborador nome={colaborador.nome} cargo={colaborador.cargo} imagem={colaborador.imagem} />)}            
+            </div>
         </section>
     );
 }
