@@ -10,7 +10,7 @@ export const Time = (props) => {
             <section className='time' style={styleSection}>
                 <h3 style={styleH3}>{props.nome}</h3>
                 <div className='colaboradores'>
-                    {props.colaboradores.map(colaborador => <Colaborador nome={colaborador.nome} cargo={colaborador.cargo} imagem={colaborador.imagem} />)}            
+                    {props.colaboradores.map(colaborador => <Colaborador key={colaborador.nome} nome={colaborador.nome} cargo={colaborador.cargo} imagem={colaborador.imagem} corDeFundo={props.corPrimaria} />)}            
                 </div>
             </section>
             ) : ''
