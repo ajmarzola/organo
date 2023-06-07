@@ -4,7 +4,9 @@ import CampoTexto from '../CampoTexto'
 import ListaSuspensa from '../ListaSuspensa'
 import './formulario.css'
 
-const Formulario = ({aoCadastrar, times}) => {
+const Formulario = ({aoCadastrar, times, cadastrarTime}) => {
+    const [nomeTime, setNomeTime] = useState('')
+    const [corTime, setCorTime] = useState('')
 
     const [nome, setNome] = useState('')
     const [cargo, setCargo] = useState('')
@@ -24,6 +26,22 @@ const Formulario = ({aoCadastrar, times}) => {
 
     return (
         <section className="formulario-container">
+            <form className="formulario" onSubmit={aoSubmeter}>
+                <h2>Preencha os dados para criar um novo time.</h2>
+                <CampoTexto
+                    obrigatorio={true}
+                    label='Nome'
+                    placeholder='Digite o nome do time '
+                    valor={nome}
+                    aoAlterado={valor => setNomeTime(valor)}/>
+                <CampoTexto
+                    obrigatorio={true}
+                    label='Cor' 
+                    placeholder='Digite a cor do time '
+                    valor={cor}
+                    aoAlterado={valor => setCorTime(valor)}/>
+                <Botao texto='Criar card' />
+            </form>
             <form className="formulario" onSubmit={aoSubmeter}>
                 <h2>Preencha os dados para criar o card do colaborador.</h2>
                 <CampoTexto
