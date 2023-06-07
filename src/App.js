@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { v4 as uuidv4 } from 'uuid';
 import Banner from "./componentes/Banner";
 import Formulario from "./componentes/Formulario";
 import Rodape from "./componentes/Rodape";
 import Time from "./componentes/Time";
+import { v4 as uuidv4 } from 'uuid';
 
 function App() {
+
   const [times, setTimes] = useState([
     {
       id: uuidv4(),
@@ -137,7 +138,6 @@ function App() {
       time: times[3].nome
     },
     {
-      id: uuidv4(),
       nome: 'DANIEL ARTINE',
       cargo: 'Engenheiro de Software na Stone Age',
       imagem: 'https://www.alura.com.br/assets/img/lideres/daniel-artine.1647533644.jpeg',
@@ -213,7 +213,7 @@ function App() {
       imagem: 'https://www.alura.com.br/assets/img/lideres/paulo-silveira.1647533644.jpeg',
       time: times[5].nome
     },
-  ];
+  ]
 
   const [colaboradores, setColaboradores] = useState(inicial)
 
@@ -221,23 +221,27 @@ function App() {
     setColaboradores(colaboradores.filter(colaborador => colaborador.id !== id));
   }
 
-  function mudarCorDoTime(cor, id) {
+  function mudarCor(cor, id) {
     setTimes(times.map(time => {
       if(time.id === id) {
         time.cor = cor;
       }
-      
       return time;
     }));
   }
 
+  function cadastrarTime({ nome, cor }) {
+    setTimes([...times, { nome, cor, id: uuidv4() }])
+  }
+
+
   return (
     <div>
       <Banner />
-      <Formulario times={times.map(time => time.nome)} aoCadastrar={colaborador => setColaboradores([...colaboradores, colaborador])} />
+      <Formulario aoCriarTime={cadastrarTime} times={times.map(time => time.nome)} aoCadastrar={colaborador => setColaboradores([...colaboradores, colaborador])} />
       <section className="times">
         <h1>Minha organização</h1>
-        {times.map((time, indice) => <Time key={indice} time={time} colaboradores={colaboradores.filter(colaborador => colaborador.time === time.nome)} aoDeletar={deletarColaborador} mudarCor={mudarCorDoTime} />)}
+        {times.map((time, indice) => <Time mudarCor={mudarCor} key={indice} time={time} colaboradores={colaboradores.filter(colaborador => colaborador.time === time.nome)} aoDeletar={deletarColaborador} />)}
       </section>
       <Rodape />
     </div>
