@@ -5,7 +5,6 @@ import Rodape from "./componentes/Rodape";
 import Time from "./componentes/Time";
 
 function App() {
-
   const [times, setTimes] = useState([
     {
       nome: 'Programação',
@@ -189,7 +188,7 @@ function App() {
       imagem: 'https://www.alura.com.br/assets/img/lideres/paulo-silveira.1647533644.jpeg',
       time: times[5].nome
     },
-  ]
+  ];
 
   const [colaboradores, setColaboradores] = useState(inicial)
 
@@ -197,13 +196,14 @@ function App() {
     console.log('deletando colaborador');
   }
 
-  function mudarCorDoTime(cor, nome){
+  function mudarCorDoTime(cor, nome) {
     setTimes(times.map(time => {
-if(time.nome === nome){
-  time.corSecundaria = cor;
-}
-return time;
-    })
+      if(time.nome === nome) {
+        time.corSecundaria = cor;
+      }
+      
+      return time;
+    }));
   }
 
   return (
